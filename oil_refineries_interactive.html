@@ -31,8 +31,8 @@
         .diagram-container {
             border: 2px solid var(--ink-color);
             padding: 20px;
-            width: 100%;
-            max-width: 900px;
+            width: 95%; /* Make it much wider */
+            max-width: 1400px; /* Increase max width */
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -42,7 +42,8 @@
         /* The Map Area */
         #map {
             width: 100%;
-            height: 600px;
+            height: 75vh;
+            min-height: 600px;
             background: #fff;
             border: 1px solid var(--ink-color);
             /* Forces the map to look like B&W paper */
@@ -99,6 +100,7 @@
 
         input[type=range] {
             -webkit-appearance: none;
+            appearance: none;
             width: 100%;
             margin: 10px 0;
             background: transparent;
@@ -130,9 +132,11 @@
         <div class="controls">
             <span class="year-display">YEAR: <span id="currentYear">1961</span></span>
             <input type="range" id="yearSlider" min="1900" max="2026" value="1961" step="1">
+            <button id="exportBtn" style="margin-top: 15px; padding: 10px 20px; font-family: var(--font-main); font-weight: bold; cursor: pointer; border: 2px solid var(--ink-color); background: var(--paper-bg); color: var(--ink-color);">Export Map View</button>
         </div>
     </div>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
     <script>
@@ -140,11 +144,11 @@
         const map = L.map('map', {
             center: [22.5937, 78.9629], 
             zoom: 5,
-            zoomControl: false, // Hiding zoom controls for cleaner screenshot look
+            zoomControl: true, // Re-enabled for navigation
             attributionControl: false, // Hiding attribution for cleaner screenshot look
-            scrollWheelZoom: false,
-            doubleClickZoom: false,
-            dragging: false // Disabling drag to keep the framing consistent for screenshots
+            scrollWheelZoom: true, // Re-enabled for navigation
+            doubleClickZoom: true, // Re-enabled for navigation
+            dragging: true // Re-enabled for panning
         });
 
         // 2. Add the Tile Layer (The Background Map)
@@ -168,9 +172,9 @@
             { name: "Mathura", full: "Mathura (IOCL)", year: 1982, lat: 27.3582, lng: 77.6833, dir: 'right' },
             { name: "Mangalore", full: "Mangalore (MRPL)", year: 1993, lat: 12.9857, lng: 74.8322, dir: 'left' },
             { name: "Panipat", full: "Panipat (IOCL)", year: 1998, lat: 29.4616, lng: 76.8488, dir: 'right' },
-            { name: "Jamnagar", full: "Jamnagar (Reliance)", year: 1999, lat: 22.3619, lng: 69.8519, dir: 'left' },
+            { name: "Jamnagar", full: "Jamnagar (Reliance)", year: 1999, lat: 22.3619, lng: 69.8519, dir: 'bottom' },
             { name: "Numaligarh", full: "Numaligarh (NRL)", year: 1999, lat: 26.6373, lng: 93.8398, dir: 'right' },
-            { name: "Vadinar", full: "Vadinar (Nayara)", year: 2006, lat: 22.4042, lng: 69.7225, dir: 'left' },
+            { name: "Vadinar", full: "Vadinar (Nayara)", year: 2006, lat: 22.4042, lng: 69.7225, dir: 'top' },
             { name: "Bina", full: "Bina (BPCL)", year: 2011, lat: 24.2155, lng: 78.2253, dir: 'right' },
             { name: "Bhatinda", full: "Bhatinda (HMEL)", year: 2012, lat: 30.0631, lng: 75.0298, dir: 'right' },
             { name: "Paradip", full: "Paradip (IOCL)", year: 2016, lat: 20.2505, lng: 86.6392, dir: 'right' },
@@ -221,6 +225,29 @@
 
         // Initial Load
         updateMap(parseInt(slider.value));
+
+        // 6. Export Functionality
+        document.getElementById('exportBtn').addEventListener('click', function() {
+            const originalText = this.innerText;
+            this.innerText = "Exporting...";
+            
+            html2canvas(document.querySelector('.diagram-container'), {
+                useCORS: true,
+                allowTaint: true,
+                scale: 2 // High resolution export
+            }).then(canvas => {
+                const link = document.createElement('a');
+                link.download = `Oil_Refineries_${document.getElementById('currentYear').textContent}.png`;
+                link.href = canvas.toDataURL('image/png');
+                link.click();
+                
+                this.innerText = originalText;
+            }).catch(err => {
+                console.error("Export failed:", err);
+                this.innerText = "Export Failed";
+                setTimeout(() => this.innerText = originalText, 2000);
+            });
+        });
 
     </script>
 </body>
