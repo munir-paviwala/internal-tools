@@ -1,0 +1,389 @@
+{
+  "access": {
+    "embargo": {
+      "active": false,
+      "reason": null
+    },
+    "files": "public",
+    "record": "public",
+    "status": "open"
+  },
+  "created": "2025-03-28T22:32:38.850442+00:00",
+  "custom_fields": {},
+  "deletion_status": {
+    "is_deleted": false,
+    "status": "P"
+  },
+  "files": {
+    "count": 3,
+    "enabled": true,
+    "entries": {
+      "OGIM_v2.7.gpkg": {
+        "access": {
+          "hidden": false
+        },
+        "checksum": "md5:51f7280fbc9ed408c940f702496c32e8",
+        "ext": "gpkg",
+        "id": "a1968055-4798-4412-9bb3-65b5c1f2ef99",
+        "key": "OGIM_v2.7.gpkg",
+        "links": {
+          "content": "https://zenodo.org/api/records/15103476/files/OGIM_v2.7.gpkg/content",
+          "self": "https://zenodo.org/api/records/15103476/files/OGIM_v2.7.gpkg"
+        },
+        "metadata": {},
+        "mimetype": "application/octet-stream",
+        "size": 3083259904,
+        "storage_class": "L"
+      },
+      "OGIM_v2.7_Data_Source_References.pdf": {
+        "access": {
+          "hidden": false
+        },
+        "checksum": "md5:32fcbd2a3945a6959f3819fc57fd4d43",
+        "ext": "pdf",
+        "id": "033c410c-1593-4833-8ef2-644529e13425",
+        "key": "OGIM_v2.7_Data_Source_References.pdf",
+        "links": {
+          "content": "https://zenodo.org/api/records/15103476/files/OGIM_v2.7_Data_Source_References.pdf/content",
+          "iiif_api": "https://zenodo.org/api/iiif/record:15103476:OGIM_v2.7_Data_Source_References.pdf/full/full/0/default.png",
+          "iiif_base": "https://zenodo.org/api/iiif/record:15103476:OGIM_v2.7_Data_Source_References.pdf",
+          "iiif_canvas": "https://zenodo.org/api/iiif/record:15103476/canvas/OGIM_v2.7_Data_Source_References.pdf",
+          "iiif_info": "https://zenodo.org/api/iiif/record:15103476:OGIM_v2.7_Data_Source_References.pdf/info.json",
+          "self": "https://zenodo.org/api/records/15103476/files/OGIM_v2.7_Data_Source_References.pdf"
+        },
+        "metadata": {},
+        "mimetype": "application/pdf",
+        "size": 477043,
+        "storage_class": "L"
+      },
+      "README_OGIM_v2.7_20250328.pdf": {
+        "access": {
+          "hidden": false
+        },
+        "checksum": "md5:d3cdf877550491ac2617ff66da1c0525",
+        "ext": "pdf",
+        "id": "91da8231-329f-4189-8220-c7b9c7076ed1",
+        "key": "README_OGIM_v2.7_20250328.pdf",
+        "links": {
+          "content": "https://zenodo.org/api/records/15103476/files/README_OGIM_v2.7_20250328.pdf/content",
+          "iiif_api": "https://zenodo.org/api/iiif/record:15103476:README_OGIM_v2.7_20250328.pdf/full/full/0/default.png",
+          "iiif_base": "https://zenodo.org/api/iiif/record:15103476:README_OGIM_v2.7_20250328.pdf",
+          "iiif_canvas": "https://zenodo.org/api/iiif/record:15103476/canvas/README_OGIM_v2.7_20250328.pdf",
+          "iiif_info": "https://zenodo.org/api/iiif/record:15103476:README_OGIM_v2.7_20250328.pdf/info.json",
+          "self": "https://zenodo.org/api/records/15103476/files/README_OGIM_v2.7_20250328.pdf"
+        },
+        "metadata": {},
+        "mimetype": "application/pdf",
+        "size": 508966,
+        "storage_class": "L"
+      }
+    },
+    "order": [],
+    "total_bytes": 3084245913
+  },
+  "id": "15103476",
+  "is_draft": false,
+  "is_published": true,
+  "links": {
+    "access": "https://zenodo.org/api/records/15103476/access",
+    "access_grants": "https://zenodo.org/api/records/15103476/access/grants",
+    "access_links": "https://zenodo.org/api/records/15103476/access/links",
+    "access_request": "https://zenodo.org/api/records/15103476/access/request",
+    "access_users": "https://zenodo.org/api/records/15103476/access/users",
+    "archive": "https://zenodo.org/api/records/15103476/files-archive",
+    "archive_media": "https://zenodo.org/api/records/15103476/media-files-archive",
+    "communities": "https://zenodo.org/api/records/15103476/communities",
+    "communities-suggestions": "https://zenodo.org/api/records/15103476/communities-suggestions",
+    "doi": "https://doi.org/10.5281/zenodo.15103476",
+    "draft": "https://zenodo.org/api/records/15103476/draft",
+    "file_modification": "https://zenodo.org/api/records/15103476/file-modification",
+    "files": "https://zenodo.org/api/records/15103476/files",
+    "latest": "https://zenodo.org/api/records/15103476/versions/latest",
+    "latest_html": "https://zenodo.org/records/15103476/latest",
+    "media_files": "https://zenodo.org/api/records/15103476/media-files",
+    "parent": "https://zenodo.org/api/records/7466757",
+    "parent_doi": "https://doi.org/10.5281/zenodo.7466757",
+    "parent_doi_html": "https://zenodo.org/doi/10.5281/zenodo.7466757",
+    "parent_html": "https://zenodo.org/records/7466757",
+    "preview_html": "https://zenodo.org/records/15103476?preview=1",
+    "request_deletion": "https://zenodo.org/api/records/15103476/request-deletion",
+    "requests": "https://zenodo.org/api/records/15103476/requests",
+    "reserve_doi": "https://zenodo.org/api/records/15103476/draft/pids/doi",
+    "self": "https://zenodo.org/api/records/15103476",
+    "self_doi": "https://doi.org/10.5281/zenodo.15103476",
+    "self_doi_html": "https://zenodo.org/doi/10.5281/zenodo.15103476",
+    "self_html": "https://zenodo.org/records/15103476",
+    "self_iiif_manifest": "https://zenodo.org/api/iiif/record:15103476/manifest",
+    "self_iiif_sequence": "https://zenodo.org/api/iiif/record:15103476/sequence/default",
+    "thumbnails": {
+      "10": "https://zenodo.org/api/iiif/record:15103476:README_OGIM_v2.7_20250328.pdf/full/%5E10,/0/default.jpg",
+      "100": "https://zenodo.org/api/iiif/record:15103476:README_OGIM_v2.7_20250328.pdf/full/%5E100,/0/default.jpg",
+      "1200": "https://zenodo.org/api/iiif/record:15103476:README_OGIM_v2.7_20250328.pdf/full/%5E1200,/0/default.jpg",
+      "250": "https://zenodo.org/api/iiif/record:15103476:README_OGIM_v2.7_20250328.pdf/full/%5E250,/0/default.jpg",
+      "50": "https://zenodo.org/api/iiif/record:15103476:README_OGIM_v2.7_20250328.pdf/full/%5E50,/0/default.jpg",
+      "750": "https://zenodo.org/api/iiif/record:15103476:README_OGIM_v2.7_20250328.pdf/full/%5E750,/0/default.jpg"
+    },
+    "versions": "https://zenodo.org/api/records/15103476/versions"
+  },
+  "media_files": {
+    "count": 2,
+    "enabled": true,
+    "entries": {
+      "OGIM_v2.7_Data_Source_References.pdf.ptif": {
+        "access": {
+          "hidden": true
+        },
+        "ext": "ptif",
+        "id": "af9ddf81-fb03-425b-b400-9746e2b67da5",
+        "key": "OGIM_v2.7_Data_Source_References.pdf.ptif",
+        "links": {
+          "content": "https://zenodo.org/api/records/15103476/files/OGIM_v2.7_Data_Source_References.pdf.ptif/content",
+          "self": "https://zenodo.org/api/records/15103476/files/OGIM_v2.7_Data_Source_References.pdf.ptif"
+        },
+        "metadata": null,
+        "mimetype": "application/octet-stream",
+        "processor": {
+          "source_file_id": "033c410c-1593-4833-8ef2-644529e13425",
+          "status": "finished",
+          "type": "image-tiles"
+        },
+        "size": 0,
+        "storage_class": "L"
+      },
+      "README_OGIM_v2.7_20250328.pdf.ptif": {
+        "access": {
+          "hidden": true
+        },
+        "ext": "ptif",
+        "id": "c42ca2c5-5bdc-4b68-8805-081fbbd08abb",
+        "key": "README_OGIM_v2.7_20250328.pdf.ptif",
+        "links": {
+          "content": "https://zenodo.org/api/records/15103476/files/README_OGIM_v2.7_20250328.pdf.ptif/content",
+          "self": "https://zenodo.org/api/records/15103476/files/README_OGIM_v2.7_20250328.pdf.ptif"
+        },
+        "metadata": null,
+        "mimetype": "application/octet-stream",
+        "processor": {
+          "source_file_id": "91da8231-329f-4189-8220-c7b9c7076ed1",
+          "status": "finished",
+          "type": "image-tiles"
+        },
+        "size": 0,
+        "storage_class": "L"
+      }
+    },
+    "order": [],
+    "total_bytes": 0
+  },
+  "metadata": {
+    "creators": [
+      {
+        "affiliations": [
+          {
+            "name": "MethaneSAT, LLC"
+          }
+        ],
+        "person_or_org": {
+          "family_name": "O'Brien",
+          "given_name": "Madeleine",
+          "name": "O'Brien, Madeleine",
+          "type": "personal"
+        },
+        "role": {
+          "id": "contactperson",
+          "title": {
+            "de": "Kontaktperson",
+            "en": "Contact person"
+          }
+        }
+      },
+      {
+        "affiliations": [
+          {
+            "name": "MethaneSAT, LLC"
+          },
+          {
+            "id": "02tj7r959",
+            "identifiers": [
+              {
+                "identifier": "02tj7r959",
+                "scheme": "ror"
+              },
+              {
+                "identifier": "grid.427145.1",
+                "scheme": "grid"
+              },
+              {
+                "identifier": "0000 0000 9311 8665",
+                "scheme": "isni"
+              }
+            ],
+            "name": "Environmental Defense Fund"
+          }
+        ],
+        "person_or_org": {
+          "family_name": "Omara",
+          "given_name": "Mark",
+          "name": "Omara, Mark",
+          "type": "personal"
+        },
+        "role": {
+          "id": "contactperson",
+          "title": {
+            "de": "Kontaktperson",
+            "en": "Contact person"
+          }
+        }
+      },
+      {
+        "affiliations": [
+          {
+            "name": "MethaneSAT, LLC"
+          }
+        ],
+        "person_or_org": {
+          "family_name": "Himmelberger",
+          "given_name": "Anthony",
+          "name": "Himmelberger, Anthony",
+          "type": "personal"
+        }
+      },
+      {
+        "affiliations": [
+          {
+            "name": "MethaneSAT, LLC"
+          },
+          {
+            "id": "02tj7r959",
+            "identifiers": [
+              {
+                "identifier": "02tj7r959",
+                "scheme": "ror"
+              },
+              {
+                "identifier": "grid.427145.1",
+                "scheme": "grid"
+              },
+              {
+                "identifier": "0000 0000 9311 8665",
+                "scheme": "isni"
+              }
+            ],
+            "name": "Environmental Defense Fund"
+          }
+        ],
+        "person_or_org": {
+          "family_name": "Gautam",
+          "given_name": "Ritesh",
+          "name": "Gautam, Ritesh",
+          "type": "personal"
+        }
+      }
+    ],
+    "dates": [
+      {
+        "date": "2025-03-28",
+        "type": {
+          "id": "updated",
+          "title": {
+            "de": "Aktualisiert",
+            "en": "Updated"
+          }
+        }
+      }
+    ],
+    "description": "<p>The Oil and Gas Infrastructure Mapping (OGIM) database is a global, spatially explicit, and granular dataset of oil and gas infrastructure. It is developed by Environmental Defense Fund (EDF)&nbsp;(<a href=\"https://www.edf.org/\">www.edf.org</a>) and MethaneSAT, LLC (<a href=\"https://www.methanesat.org/\">www.methanesat.org</a>), a wholly owned subsidiary of EDF. The OGIM database helps fill a crucial geospatial data need, by supporting the quantification and source characterization of oil and gas methane emissions. The database is developed via acquisition, analysis, curation, integration, and quality-assurance (performed at EDF) of publicly available geospatial data sources. These oil and gas facility datasets are reported by governments, industry, academics, and other non-government entities.</p>\n<p>OGIM is a collection of data tables within a GeoPackage. Each data table within the GeoPackage includes locations and facility attributes of oil and gas infrastructure types that are important sources of methane emissions, including: oil and gas production wells, offshore production platforms, natural gas compressor stations, oil and natural gas processing facilities, liquefied natural gas facilities, crude oil refineries, and pipelines. OGIM v2.7 includes approximately 6.7 million features, including 4.5 million point locations of oil and gas wells and over 1.2 million kilometers of oil and gas pipelines.</p>\n<p>Please see the PDF document in the &ldquo;Files&rdquo; section of this page for more information about this version, including attribute column definitions, key changes since the previous version, and more. Full details on database development and related analytics can be found in the following Earth System Science Data (ESSD) journal paper. Please cite this paper when using any version of the database:</p>\n<p><span>Omara, M., Gautam, R., O'Brien, M., Himmelberger, A., Franco, A., Meisenhelder, K., Hauser, G., Lyon, D., Chulakadabba, A., Miller, C., Franklin, J., Wofsy, S., and Hamburg, S.: Developing a spatially explicit global oil and gas infrastructure database for characterizing methane emission sources at high resolution, Earth Syst. Sci. Data Discuss.,&nbsp;</span><a href=\"https://doi.org/10.5194/essd-15-3761-2023\"><span>https://doi.org/10.5194/essd-15-3761-2023</span></a><span>, 2023.</span></p>\n<p>Important note: While the results section of this manuscript is specific to v1 of the OGIM, the methods described therein are the same methods used to develop and update v2.7. Additionally, while we describe our data sources in detail in the manuscript above, and include maps of all acquired datasets, this open-access version of the OGIM database does not include the locations of about 300 natural gas compressor stations in Russia. Future updates may include these locations when appropriate permissions to make them publicly accessible are obtained.&nbsp;</p>\n<p>OGIM v2.7 is based on public-domain datasets reported in February 2025 or prior. Each record in OGIM indicates a date (SRC_DATE) when the original source of the record was published or last updated. Some records may contain out-of-date information, for example, if a facility&rsquo;s status has changed since we last visited a data source. We anticipate updating the OGIM database on a regular cadence and are continually including new public domain datasets as they become available.</p>\n<p>---</p>\n<p>Point of Contact at Environmental Defense Fund and MethaneSAT, LLC: Madeleine O&rsquo;Brien (maobrien@methanesat.org) and Mark Omara (momara@edf.org).</p>",
+    "publication_date": "2025-03-28",
+    "publisher": "Zenodo",
+    "resource_type": {
+      "id": "dataset",
+      "title": {
+        "de": "Datensatz",
+        "en": "Dataset"
+      }
+    },
+    "rights": [
+      {
+        "description": {
+          "en": "The Creative Commons Attribution license allows re-distribution and re-use of a licensed work on the condition that the creator is appropriately credited."
+        },
+        "icon": "cc-by-icon",
+        "id": "cc-by-4.0",
+        "props": {
+          "scheme": "spdx",
+          "url": "https://creativecommons.org/licenses/by/4.0/legalcode"
+        },
+        "title": {
+          "en": "Creative Commons Attribution 4.0 International"
+        }
+      }
+    ],
+    "subjects": [
+      {
+        "subject": "Oil and natural gas infrastructure"
+      },
+      {
+        "subject": "Methane emissions"
+      }
+    ],
+    "title": "Oil and Gas Infrastructure Mapping (OGIM) database",
+    "version": "OGIM_v2.7"
+  },
+  "parent": {
+    "access": {
+      "owned_by": {
+        "user": "454100"
+      },
+      "settings": {
+        "accept_conditions_text": null,
+        "allow_guest_requests": false,
+        "allow_user_requests": false,
+        "secret_link_expiration": 0
+      }
+    },
+    "communities": {},
+    "id": "7466757",
+    "pids": {
+      "doi": {
+        "client": "datacite",
+        "identifier": "10.5281/zenodo.7466757",
+        "provider": "datacite"
+      }
+    }
+  },
+  "pids": {
+    "doi": {
+      "client": "datacite",
+      "identifier": "10.5281/zenodo.15103476",
+      "provider": "datacite"
+    },
+    "oai": {
+      "identifier": "oai:zenodo.org:15103476",
+      "provider": "oai"
+    }
+  },
+  "revision_id": 8,
+  "stats": {
+    "all_versions": {
+      "data_volume": 16896264039447.0,
+      "downloads": 15225,
+      "unique_downloads": 11206,
+      "unique_views": 14471,
+      "views": 16553
+    },
+    "this_version": {
+      "data_volume": 6477353525140.0,
+      "downloads": 7282,
+      "unique_downloads": 5259,
+      "unique_views": 3215,
+      "views": 3700
+    }
+  },
+  "status": "published",
+  "swh": {},
+  "updated": "2025-03-28T22:35:02.792019+00:00",
+  "versions": {
+    "index": 5,
+    "is_latest": true
+  }
+}

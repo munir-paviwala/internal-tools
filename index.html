@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OGIM India - Dynamic Infrastructure Dashboard</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin=""/>
+    
+    <!-- MarkerCluster CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css"/>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css"/>
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main>
+        <div id="map"></div>
+
+        <!-- Floating Attribution Widget for UI -->
+        <div class="attribution-widget glass-panel">
+            <strong>Data Source:</strong> OGIM v2.7 by EDF &amp; MethaneSAT<br>
+            <a href="https://doi.org/10.5281/zenodo.15103476" target="_blank">doi.org/10.5281/zenodo.15103476</a><br>
+            <span style="font-size: 0.75rem; display: block; margin-top: 6px; border-top: 1px solid rgba(0,0,0,0.1); padding-top: 4px;">Built by Munir Paviwala with Gemini (Antigravity)</span>
+        </div>
+
+        <!-- Hidden Watermark strictly for the Image Export -->
+        <div id="export-watermark" style="display: none; position: absolute; bottom: 30px; right: 30px; z-index: 9999; background: rgba(255,255,255,0.95); padding: 15px 20px; border-radius: 12px; font-family: 'Outfit', sans-serif; box-shadow: 0 8px 24px rgba(0,0,0,0.15); border: 1px solid rgba(0,0,0,0.05);">
+            <div style="font-size: 1.1rem; font-weight: 700; color: #0f172a; margin-bottom: 2px;">OGIM India Visualiser by Munir Paviwala</div>
+            <div style="font-size: 0.85rem; font-weight: 400; color: #64748b;">Built with Gemini (Antigravity) | Source: OGIM v2.7 (doi: 10.5281/zenodo.15103476)</div>
+        </div>
+        
+        <aside id="sidebar" class="glass-panel">
+            <header>
+                <h1>OGIM India</h1>
+                <p>Infrastructure Explorer</p>
+                <div class="divider"></div>
+            </header>
+            
+            <section class="controls">
+                <h3>Data Layers</h3>
+                <div id="layer-toggles" class="toggle-group">
+                    <!-- Layer checkboxes injected via JS -->
+                </div>
+                <!-- Controls spacing -->
+                <div style="margin-top: 20px;"></div>
+                <button id="export-btn" class="primary-btn">
+                    <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                    Export High-Res Map
+                </button>
+            </section>
+        </aside>
+
+        <!-- Loading Overlay -->
+        <div id="loading-overlay" class="glass-panel active">
+            <div class="spinner"></div>
+            <p style="font-weight: 500; color: #0284c7;">Loading Geospatial Data...</p>
+        </div>
+    </main>
+
+    <!-- html2canvas for Screenshot Export -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    
+    <!-- Leaflet & MarkerCluster JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+    <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
+    
+    <!-- Custom JS -->
+    <script src="app.js"></script>
+</body>
+</html>
