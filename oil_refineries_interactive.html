@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>India Oil Refineries - Geocoded Timeline</title>
+    
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    
+    <style>
+        :root {
+            --paper-bg: #ffffff;
+            --ink-color: #000000;
+            --highlight: #0055ff; /* The blue from your diagram */
+            --font-main: 'Courier New', Courier, monospace;
+        }
+
+        body {
+            background-color: var(--paper-bg);
+            color: var(--ink-color);
+            font-family: var(--font-main);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0;
+            padding: 20px;
+            height: 100vh;
+            box-sizing: border-box;
+        }
+
+        .diagram-container {
+            border: 2px solid var(--ink-color);
+            padding: 20px;
+            width: 100%;
+            max-width: 900px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: var(--paper-bg);
+        }
+
+        /* The Map Area */
+        #map {
+            width: 100%;
+            height: 600px;
+            background: #fff;
+            border: 1px solid var(--ink-color);
+            /* Forces the map to look like B&W paper */
+            filter: grayscale(100%) contrast(110%);
+        }
+
+        /* The dots on the map */
+        .custom-marker {
+            background-color: var(--highlight);
+            border: 1px solid white;
+            border-radius: 50%;
+            width: 10px;
+            height: 10px;
+            display: block;
+            box-shadow: 0 0 0 1px rgba(0,0,0,0.2);
+        }
+
+        /* --------- NEW LABEL STYLING --------- */
+        /* This overrides standard Leaflet tooltip styles to look like plain text */
+        .refinery-label {
+            background: transparent !important;
+            border: none !important;
+            box-shadow: none !important;
+            font-family: var(--font-main);
+            font-size: 11px;
+            font-weight: bold;
+            color: var(--ink-color);
+            white-space: nowrap;
+            /* A slight white halo to make text readable over map lines */
+            text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff;
+        }
+        /* Hide the little pointer triangle on the tooltip */
+        .leaflet-tooltip-left:before, .leaflet-tooltip-right:before, .leaflet-tooltip-top:before, .leaflet-tooltip-bottom:before {
+            display: none !important;
+        }
+        /* ------------------------------------- */
+
+
+        /* Controls Section */
+        .controls {
+            width: 100%;
+            margin-top: 20px;
+            border-top: 2px solid var(--ink-color);
+            padding-top: 20px;
+            text-align: center;
+        }
+
+        .year-display {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        input[type=range] {
+            -webkit-appearance: none;
+            width: 100%;
+            margin: 10px 0;
+            background: transparent;
+        }
+        input[type=range]:focus { outline: none; }
+        input[type=range]::-webkit-slider-runnable-track {
+            width: 100%;
+            height: 8px;
+            cursor: pointer;
+            background: #fff;
+            border: 2px solid var(--ink-color);
+        }
+        input[type=range]::-webkit-slider-thumb {
+            height: 24px;
+            width: 12px;
+            border: 2px solid var(--ink-color);
+            background: var(--ink-color);
+            cursor: pointer;
+            -webkit-appearance: none;
+            margin-top: -10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="diagram-container">
+        <div id="map"></div>
+
+        <div class="controls">
+            <span class="year-display">YEAR: <span id="currentYear">1961</span></span>
+            <input type="range" id="yearSlider" min="1900" max="2026" value="1961" step="1">
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+    <script>
+        // 1. Initialize the Map
+        const map = L.map('map', {
+            center: [22.5937, 78.9629], 
+            zoom: 5,
+            zoomControl: false, // Hiding zoom controls for cleaner screenshot look
+            attributionControl: false, // Hiding attribution for cleaner screenshot look
+            scrollWheelZoom: false,
+            doubleClickZoom: false,
+            dragging: false // Disabling drag to keep the framing consistent for screenshots
+        });
+
+        // 2. Add the Tile Layer (The Background Map)
+        L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+            maxZoom: 19
+        }).addTo(map);
+
+        // 3. THE DATA
+        const refineries = [
+            { name: "Digboi", full: "Digboi (IOCL)", year: 1901, lat: 27.3946, lng: 95.6267, dir: 'right' },
+            { name: "Mumbai (HPCL)", full: "Mumbai (HPCL - Esso)", year: 1954, lat: 19.0140, lng: 72.8943, dir: 'left' },
+            { name: "Mumbai (BPCL)", full: "Mumbai (BPCL - Burmah)", year: 1955, lat: 19.0060, lng: 72.9050, dir: 'bottom' },
+            { name: "Visakhapatnam", full: "Visakhapatnam (HPCL)", year: 1957, lat: 17.6868, lng: 83.2185, dir: 'right' },
+            { name: "Guwahati", full: "Guwahati (IOCL)", year: 1962, lat: 26.1866, lng: 91.8023, dir: 'top' },
+            { name: "Barauni", full: "Barauni (IOCL)", year: 1964, lat: 25.4542, lng: 86.0128, dir: 'right' },
+            { name: "Gujarat", full: "Gujarat (Koyali) (IOCL)", year: 1965, lat: 22.3803, lng: 73.0759, dir: 'left' },
+            { name: "Kochi", full: "Kochi (BPCL)", year: 1966, lat: 9.9697, lng: 76.3682, dir: 'right' },
+            { name: "Chennai", full: "Manali (Chennai) (CPCL)", year: 1969, lat: 13.1706, lng: 80.2676, dir: 'right' },
+            { name: "Haldia", full: "Haldia (IOCL)", year: 1975, lat: 22.0673, lng: 88.0932, dir: 'right' },
+            { name: "Bongaigaon", full: "Bongaigaon (IOCL)", year: 1979, lat: 26.5029, lng: 90.5360, dir: 'right' },
+            { name: "Mathura", full: "Mathura (IOCL)", year: 1982, lat: 27.3582, lng: 77.6833, dir: 'right' },
+            { name: "Mangalore", full: "Mangalore (MRPL)", year: 1993, lat: 12.9857, lng: 74.8322, dir: 'left' },
+            { name: "Panipat", full: "Panipat (IOCL)", year: 1998, lat: 29.4616, lng: 76.8488, dir: 'right' },
+            { name: "Jamnagar", full: "Jamnagar (Reliance)", year: 1999, lat: 22.3619, lng: 69.8519, dir: 'left' },
+            { name: "Numaligarh", full: "Numaligarh (NRL)", year: 1999, lat: 26.6373, lng: 93.8398, dir: 'right' },
+            { name: "Vadinar", full: "Vadinar (Nayara)", year: 2006, lat: 22.4042, lng: 69.7225, dir: 'left' },
+            { name: "Bina", full: "Bina (BPCL)", year: 2011, lat: 24.2155, lng: 78.2253, dir: 'right' },
+            { name: "Bhatinda", full: "Bhatinda (HMEL)", year: 2012, lat: 30.0631, lng: 75.0298, dir: 'right' },
+            { name: "Paradip", full: "Paradip (IOCL)", year: 2016, lat: 20.2505, lng: 86.6392, dir: 'right' },
+            { name: "Barmer", full: "Barmer (HRRL)", year: 2024, lat: 25.9080, lng: 71.9167, dir: 'right' }
+        ];
+
+        // 4. Logic to Update Map
+        let markers = [];
+        const labelOffset = [8, 0]; // shift labels slightly right of dot
+
+        function updateMap(year) {
+            markers.forEach(m => map.removeLayer(m));
+            markers = [];
+
+            const activeRefineries = refineries.filter(r => r.year <= year);
+
+            activeRefineries.forEach(r => {
+                const customIcon = L.divIcon({
+                    className: 'custom-marker-container',
+                    html: `<div class="custom-marker"></div>`,
+                    iconSize: [10, 10],
+                    iconAnchor: [5, 5]
+                });
+
+                const marker = L.marker([r.lat, r.lng], { icon: customIcon, interactive: false })
+                    .addTo(map);
+
+                // --- NEW: Bind permanent tooltip ---
+                marker.bindTooltip(`${r.name} (${r.year})`, {
+                    permanent: true,
+                    direction: r.dir || 'right', // Use specified direction or default right
+                    className: 'refinery-label',
+                    offset: r.dir === 'left' ? [-8, 0] : (r.dir === 'top' ? [0,-8] : (r.dir === 'bottom' ? [0,8] : [8,0]))
+                });
+                // ------------------------------------
+                
+                markers.push(marker);
+            });
+
+            document.getElementById('currentYear').textContent = year;
+        }
+
+        // 5. Connect Slider
+        const slider = document.getElementById('yearSlider');
+        slider.addEventListener('input', (e) => {
+            updateMap(parseInt(e.target.value));
+        });
+
+        // Initial Load
+        updateMap(parseInt(slider.value));
+
+    </script>
+</body>
+</html>

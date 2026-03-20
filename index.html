@@ -3,74 +3,127 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OGIM India - Dynamic Infrastructure Dashboard</title>
-    
-    <!-- Google Fonts -->
+    <title>Internal Tools - Munir Paviwala</title>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Leaflet CSS -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin=""/>
-    
-    <!-- MarkerCluster CSS -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css"/>
-    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css"/>
-    
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="style.css">
+    <style>
+        :root {
+            --bg-color: #f8fafc;
+            --text-color: #0f172a;
+            --card-bg: #ffffff;
+            --accent-color: #0284c7;
+            --border-color: #e2e8f0;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 800px;
+            width: 100%;
+        }
+
+        header {
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #0284c7, #4338ca);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin: 0 0 10px 0;
+        }
+
+        header p {
+            font-size: 1.1rem;
+            color: #64748b;
+            margin: 0;
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 24px;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+            border-color: #cbd5e1;
+        }
+
+        .card h2 {
+            margin: 0 0 12px 0;
+            font-size: 1.25rem;
+            color: var(--accent-color);
+        }
+
+        .card p {
+            margin: 0;
+            color: #64748b;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            flex-grow: 1;
+        }
+        
+        .footer {
+            margin-top: 60px;
+            text-align: center;
+            font-size: 0.85rem;
+            color: #94a3b8;
+        }
+    </style>
 </head>
 <body>
-    <main>
-        <div id="map"></div>
+    <div class="container">
+        <header>
+            <h1>Internal Tools</h1>
+            <p>Research interactives and data visualizations.</p>
+        </header>
 
-        <!-- Floating Attribution Widget for UI -->
-        <div class="attribution-widget glass-panel">
-            <strong>Data Source:</strong> OGIM v2.7 by EDF &amp; MethaneSAT<br>
-            <a href="https://doi.org/10.5281/zenodo.15103476" target="_blank">doi.org/10.5281/zenodo.15103476</a><br>
-            <span style="font-size: 0.75rem; display: block; margin-top: 6px; border-top: 1px solid rgba(0,0,0,0.1); padding-top: 4px;">Built by Munir Paviwala with Gemini (Antigravity)</span>
-        </div>
+        <div class="card-grid">
+            <a href="ogim_india.html" class="card">
+                <h2>OGIM India Explorer</h2>
+                <p>An interactive geospatial dashboard mapping oil and gas infrastructure, including pipelines, fields, blocks, and refineries across India and its offshore EEZ layers.</p>
+            </a>
+            
+            <a href="oil_refineries_interactive.html" class="card">
+                <h2>Indian Oil Refineries Timetable</h2>
+                <p>An interactive time-slider visualization showing when and where various oil refineries were established across India.</p>
+            </a>
 
-        <!-- Hidden Watermark strictly for the Image Export -->
-        <div id="export-watermark" style="display: none; position: absolute; bottom: 30px; right: 30px; z-index: 9999; background: rgba(255,255,255,0.95); padding: 15px 20px; border-radius: 12px; font-family: 'Outfit', sans-serif; box-shadow: 0 8px 24px rgba(0,0,0,0.15); border: 1px solid rgba(0,0,0,0.05);">
-            <div style="font-size: 1.1rem; font-weight: 700; color: #0f172a; margin-bottom: 2px;">OGIM India Visualiser by Munir Paviwala</div>
-            <div style="font-size: 0.85rem; font-weight: 400; color: #64748b;">Built with Gemini (Antigravity) | Source: OGIM v2.7 (doi: 10.5281/zenodo.15103476)</div>
+            <a href="mapping_Baroda_industrial.html" class="card">
+                <h2>Baroda Industrial Mapping</h2>
+                <p>A focused industrial map visualization spanning the Baroda region.</p>
+            </a>
         </div>
         
-        <aside id="sidebar" class="glass-panel">
-            <header>
-                <h1>OGIM India</h1>
-                <p>Infrastructure Explorer</p>
-                <div class="divider"></div>
-            </header>
-            
-            <section class="controls">
-                <h3>Data Layers</h3>
-                <div id="layer-toggles" class="toggle-group">
-                    <!-- Layer checkboxes injected via JS -->
-                </div>
-                <!-- Controls spacing -->
-                <div style="margin-top: 20px;"></div>
-                <button id="export-btn" class="primary-btn">
-                    <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
-                    Export High-Res Map
-                </button>
-            </section>
-        </aside>
-
-        <!-- Loading Overlay -->
-        <div id="loading-overlay" class="glass-panel active">
-            <div class="spinner"></div>
-            <p style="font-weight: 500; color: #0284c7;">Loading Geospatial Data...</p>
+        <div class="footer">
+            Made by Google Gemini 3.1 Pro (Mar 2026). Directed by Munir Paviwala.
         </div>
-    </main>
-
-    <!-- html2canvas for Screenshot Export -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-    
-    <!-- Leaflet & MarkerCluster JS -->
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
-    <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
-    
-    <!-- Custom JS -->
-    <script src="app.js"></script>
+    </div>
 </body>
 </html>
