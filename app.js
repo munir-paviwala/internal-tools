@@ -38,7 +38,8 @@ function initMap() {
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors | &copy; OGIM Database',
-        maxZoom: 19
+        maxZoom: 19,
+        opacity: 0.35
     }).addTo(mapState.map);
 
     L.control.zoom({ position: 'bottomright' }).addTo(mapState.map);

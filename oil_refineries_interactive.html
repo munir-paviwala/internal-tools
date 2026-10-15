@@ -154,7 +154,8 @@
         // 2. Add the Tile Layer (The Background Map)
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-            maxZoom: 19
+            maxZoom: 19,
+            opacity: 0.4
         }).addTo(map);
 
         // 3. THE DATA
