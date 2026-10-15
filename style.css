@@ -1,5 +1,5 @@
 :root {
-    --bg-color: #e8e4dc;
+    --bg-color: #111;
     --sidebar-bg: #0f172a;
     --border-color: rgba(255, 255, 255, 0.08);
     --text-primary: #f1f5f9;
@@ -34,7 +34,8 @@ main {
     width: 100%;
     height: 100%;
     z-index: 1;
-    background-color: #c8c4bc;
+    background-color: #111;
+    filter: brightness(0.75);
 }
 
 /* Glassmorphism Sidebar */

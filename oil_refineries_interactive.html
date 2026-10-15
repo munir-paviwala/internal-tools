@@ -44,8 +44,9 @@
             width: 100%;
             height: 75vh;
             min-height: 600px;
-            background: #e8e4dc;
+            background: #111;
             border: 1px solid var(--ink-color);
+            filter: grayscale(1) brightness(0.65);
         }
 
         /* State boundary GeoJSON style */
@@ -56,15 +57,6 @@
             opacity: 0.5;
         }
 
-        /* City reference dots */
-        .city-dot {
-            background: #000;
-            border-radius: 50%;
-            width: 5px;
-            height: 5px;
-            border: 1px solid #fff;
-            opacity: 0.7;
-        }
 
         /* The dots on the map */
         .custom-marker {
@@ -86,10 +78,9 @@
             font-family: var(--font-main);
             font-size: 11px;
             font-weight: bold;
-            color: var(--ink-color);
+            color: #fff;
             white-space: nowrap;
-            /* A slight white halo to make text readable over map lines */
-            text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff;
+            text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
         }
         /* Hide the little pointer triangle on the tooltip */
         .leaflet-tooltip-left:before, .leaflet-tooltip-right:before, .leaflet-tooltip-top:before, .leaflet-tooltip-bottom:before {
@@ -201,30 +192,6 @@
             })
             .catch(() => {}); // silent fail if CDN unreachable
 
-        // Major reference cities (lightweight inline — no extra request)
-        const refCities = [
-            { name: 'New Delhi', lat: 28.6139, lng: 77.2090 },
-            { name: 'Mumbai',    lat: 19.0760, lng: 72.8777 },
-            { name: 'Kolkata',   lat: 22.5726, lng: 88.3639 },
-            { name: 'Chennai',   lat: 13.0827, lng: 80.2707 },
-            { name: 'Hyderabad', lat: 17.3850, lng: 78.4867 },
-            { name: 'Bengaluru', lat: 12.9716, lng: 77.5946 },
-            { name: 'Ahmedabad', lat: 23.0225, lng: 72.5714 },
-            { name: 'Patna',     lat: 25.5941, lng: 85.1376 },
-            { name: 'Guwahati',  lat: 26.1445, lng: 91.7362 },
-            { name: 'Bhopal',    lat: 23.2599, lng: 77.4126 }
-        ];
-        refCities.forEach(c => {
-            L.marker([c.lat, c.lng], {
-                icon: L.divIcon({ className: 'city-dot', iconSize: [5,5], iconAnchor: [3,3] }),
-                interactive: false
-            }).bindTooltip(c.name, {
-                permanent: true,
-                direction: 'right',
-                className: 'refinery-label',
-                offset: [6, 0]
-            }).addTo(map);
-        });
 
         // 3. THE DATA
         const refineries = [

@@ -6,123 +6,162 @@
     <title>Internal Tools - Munir Paviwala</title>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --bg-color: #f8fafc;
-            --text-color: #0f172a;
-            --card-bg: #ffffff;
-            --accent-color: #0284c7;
-            --border-color: #e2e8f0;
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
 
         body {
             font-family: 'Outfit', sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            margin: 0;
-            padding: 40px 20px;
+            background-color: #111;
+            color: #f1f5f9;
+            min-height: 100vh;
+            padding: 60px 20px;
             display: flex;
             justify-content: center;
         }
 
         .container {
-            max-width: 800px;
+            max-width: 860px;
             width: 100%;
         }
 
         header {
-            margin-bottom: 40px;
-            text-align: center;
+            margin-bottom: 48px;
+        }
+
+        header .label {
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #f59e0b;
+            margin-bottom: 12px;
         }
 
         header h1 {
-            font-size: 2.5rem;
+            font-size: 2.2rem;
             font-weight: 700;
-            background: linear-gradient(135deg, #0284c7, #4338ca);
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin: 0 0 10px 0;
+            color: #f1f5f9;
+            letter-spacing: -0.5px;
+            line-height: 1.2;
+        }
+
+        header h1 span {
+            color: #f59e0b;
         }
 
         header p {
-            font-size: 1.1rem;
+            font-size: 0.95rem;
             color: #64748b;
-            margin: 0;
+            margin-top: 10px;
+            max-width: 480px;
+        }
+
+        .divider {
+            height: 1px;
+            background: rgba(255,255,255,0.07);
+            margin: 32px 0;
         }
 
         .card-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 24px;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 16px;
         }
 
         .card {
-            background-color: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
+            background: #0f172a;
+            border: 1px solid rgba(255,255,255,0.07);
+            border-radius: 6px;
             padding: 24px;
             text-decoration: none;
             color: inherit;
-            transition: all 0.2s ease;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
             display: flex;
             flex-direction: column;
+            gap: 10px;
+            transition: border-color 0.2s, background 0.2s;
         }
 
         .card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
-            border-color: #cbd5e1;
+            border-color: #f59e0b;
+            background: #162032;
+        }
+
+        .card .tag {
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: #f59e0b;
         }
 
         .card h2 {
-            margin: 0 0 12px 0;
-            font-size: 1.25rem;
-            color: var(--accent-color);
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: #f1f5f9;
+            line-height: 1.3;
         }
 
         .card p {
-            margin: 0;
+            font-size: 0.85rem;
             color: #64748b;
-            font-size: 0.95rem;
-            line-height: 1.5;
+            line-height: 1.6;
             flex-grow: 1;
         }
-        
+
+        .card .arrow {
+            font-size: 0.8rem;
+            color: #475569;
+            margin-top: 4px;
+            transition: color 0.2s;
+        }
+
+        .card:hover .arrow {
+            color: #f59e0b;
+        }
+
         .footer {
-            margin-top: 60px;
-            text-align: center;
-            font-size: 0.85rem;
-            color: #94a3b8;
+            margin-top: 48px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            font-size: 0.75rem;
+            color: #334155;
         }
     </style>
 </head>
 <body>
     <div class="container">
         <header>
-            <h1>Internal Tools</h1>
-            <p>Research interactives and data visualizations.</p>
+            <div class="label">Internal Research Tools</div>
+            <h1>Geospatial Interactives<span>.</span></h1>
+            <p>Energy and industrial infrastructure dashboards for India.</p>
         </header>
+
+        <div class="divider"></div>
 
         <div class="card-grid">
             <a href="ogim_india.html" class="card">
+                <div class="tag">Geospatial · OGIM v2.7</div>
                 <h2>OGIM India Explorer</h2>
-                <p>An interactive geospatial dashboard mapping oil and gas infrastructure, including pipelines, fields, blocks, and refineries across India and its offshore EEZ layers.</p>
+                <p>Interactive dashboard mapping oil and gas infrastructure — pipelines, fields, blocks, refineries, and offshore EEZ layers.</p>
+                <div class="arrow">Open →</div>
             </a>
-            
+
             <a href="oil_refineries_interactive.html" class="card">
-                <h2>Indian Oil Refineries Timetable</h2>
-                <p>An interactive time-slider visualization showing when and where various oil refineries were established across India.</p>
+                <div class="tag">Timeline · 1901 – 2024</div>
+                <h2>Indian Oil Refineries</h2>
+                <p>Time-slider visualization showing when and where refineries were established across India's history.</p>
+                <div class="arrow">Open →</div>
             </a>
 
             <a href="mapping_Baroda_industrial.html" class="card">
+                <div class="tag">Regional · Baroda</div>
                 <h2>Baroda Industrial Mapping</h2>
-                <p>A focused industrial map visualization spanning the Baroda region.</p>
+                <p>Focused industrial map of the Vadodara region with a spatial editor for placing and exporting markers.</p>
+                <div class="arrow">Open →</div>
             </a>
         </div>
-        
+
         <div class="footer">
-            Made by Google Gemini 3.1 Pro (Mar 2026). Directed by Munir Paviwala.
+            Directed by Munir Paviwala &nbsp;|&nbsp; Internal Research Tool
         </div>
     </div>
 </body>
