@@ -1,11 +1,11 @@
 :root {
-    --bg-color: #f8fafc;
-    --panel-bg: rgba(255, 255, 255, 0.85);
-    --border-color: rgba(0, 0, 0, 0.08);
-    --text-primary: #0f172a;
-    --text-secondary: #64748b;
-    --accent-color: #0284c7;
-    --accent-hover: #0369a1;
+    --bg-color: #e8e4dc;
+    --sidebar-bg: #0f172a;
+    --border-color: rgba(255, 255, 255, 0.08);
+    --text-primary: #f1f5f9;
+    --text-secondary: #94a3b8;
+    --accent-color: #f59e0b;
+    --accent-hover: #d97706;
     --font-stack: 'Outfit', sans-serif;
 }
 
@@ -34,7 +34,7 @@ main {
     width: 100%;
     height: 100%;
     z-index: 1;
-    background-color: #e5e7eb;
+    background-color: #c8c4bc;
 }
 
 /* Glassmorphism Sidebar */
@@ -46,52 +46,93 @@ main {
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05);
 }
 
+/* Sidebar */
 #sidebar {
     position: absolute;
     top: 0;
     left: 0;
-    width: 320px;
+    width: 300px;
     height: 100%;
     z-index: 1000;
-    padding: 2rem;
+    background: var(--sidebar-bg);
+    border-right: 1px solid rgba(255,255,255,0.06);
+    padding: 1.5rem;
     display: flex;
     flex-direction: column;
     transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     overflow-y: auto;
+    overflow-x: hidden;
+}
+
+#sidebar.collapsed {
+    transform: translateX(-300px);
+}
+
+/* Collapse toggle tab */
+#sidebar-toggle {
+    position: absolute;
+    top: 50%;
+    left: 300px;
+    transform: translateY(-50%);
+    z-index: 1001;
+    width: 24px;
+    height: 48px;
+    background: var(--sidebar-bg);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-left: none;
+    border-radius: 0 6px 6px 0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-secondary);
+    font-size: 0.7rem;
+    transition: left 0.3s cubic-bezier(0.16, 1, 0.3, 1), background 0.2s;
+}
+
+#sidebar-toggle:hover {
+    background: #1e293b;
+    color: var(--text-primary);
+}
+
+#sidebar.collapsed + #sidebar-toggle {
+    left: 0;
 }
 
 header h1 {
-    font-size: 2rem;
+    font-size: 1.6rem;
     font-weight: 700;
-    letter-spacing: -0.5px;
-    background: linear-gradient(135deg, #0284c7, #4338ca);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    margin-bottom: 0.25rem;
+    letter-spacing: -0.3px;
+    color: var(--text-primary);
+    margin-bottom: 0.2rem;
+}
+
+header .accent-dot {
+    color: var(--accent-color);
 }
 
 header p {
     color: var(--text-secondary);
-    font-size: 0.95rem;
+    font-size: 0.85rem;
     font-weight: 400;
-    letter-spacing: 0.2px;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
 }
 
 .divider {
     height: 1px;
-    background: var(--border-color);
-    margin: 1.5rem 0;
+    background: rgba(255,255,255,0.07);
+    margin: 1rem 0;
     width: 100%;
 }
 
 .controls h3 {
-    font-size: 1.1rem;
+    font-size: 0.7rem;
     font-weight: 700;
-    margin-bottom: 1rem;
-    color: var(--text-primary);
+    margin-bottom: 0.75rem;
+    color: var(--text-secondary);
     text-transform: uppercase;
-    letter-spacing: 0.5px;
+    letter-spacing: 1.5px;
 }
 
 .toggle-group {
@@ -105,14 +146,13 @@ header p {
     display: flex;
     align-items: center;
     cursor: pointer;
-    padding: 0.6rem;
-    border-radius: 8px;
-    transition: background 0.2s ease, transform 0.2s ease;
+    padding: 0.45rem 0.5rem;
+    border-radius: 4px;
+    transition: background 0.15s ease;
 }
 
 .layer-toggle:hover {
-    background: rgba(0,0,0,0.03);
-    transform: translateX(2px);
+    background: rgba(255,255,255,0.05);
 }
 
 .layer-toggle input[type="checkbox"] {
@@ -120,33 +160,30 @@ header p {
 }
 
 .custom-checkbox {
-    width: 20px;
-    height: 20px;
-    border: 2px solid var(--text-secondary);
-    border-radius: 4px;
-    margin-right: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.2s ease;
+    width: 14px;
+    height: 14px;
+    border: 1.5px solid #475569;
+    border-radius: 2px;
+    margin-right: 10px;
+    flex-shrink: 0;
+    transition: all 0.15s ease;
     background: transparent;
 }
 
 .layer-toggle input[type="checkbox"]:checked + .custom-checkbox {
-    background: var(--accent-color);
-    border-color: var(--accent-color);
+    /* color set via inline JS per layer */
 }
 
 .custom-checkbox::after {
     content: '';
-    width: 5px;
-    height: 10px;
+    display: block;
+    width: 4px;
+    height: 8px;
     border: solid #fff;
-    border-width: 0 2px 2px 0;
-    transform: rotate(45deg);
+    border-width: 0 1.5px 1.5px 0;
+    transform: rotate(45deg) translate(2px, -1px);
     opacity: 0;
-    margin-bottom: 2px;
-    transition: opacity 0.2s ease;
+    transition: opacity 0.15s ease;
 }
 
 .layer-toggle input[type="checkbox"]:checked + .custom-checkbox::after {
@@ -154,48 +191,52 @@ header p {
 }
 
 .layer-toggle span {
-    font-size: 0.95rem;
-    font-weight: 500;
+    font-size: 0.85rem;
+    font-weight: 400;
+    color: var(--text-primary);
 }
 
 .feature-count {
     margin-left: auto;
-    font-size: 0.75rem !important;
-    font-weight: 600 !important;
+    font-size: 0.7rem !important;
+    font-weight: 500 !important;
     color: var(--text-secondary);
-    background: rgba(0,0,0,0.05);
-    padding: 2px 8px;
-    border-radius: 12px;
+    background: rgba(255,255,255,0.05);
+    padding: 1px 6px;
+    border-radius: 10px;
+}
+
+/* Export footer — always pinned to sidebar bottom */
+.sidebar-footer {
+    margin-top: auto;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(255,255,255,0.07);
 }
 
 .primary-btn {
     width: 100%;
-    padding: 1rem;
+    padding: 0.75rem 1rem;
     background: var(--accent-color);
-    color: #fff;
+    color: #0f172a;
     border: none;
-    border-radius: 8px;
+    border-radius: 4px;
     font-family: var(--font-stack);
-    font-weight: 600;
-    font-size: 1rem;
+    font-weight: 700;
+    font-size: 0.9rem;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 12px rgba(2, 132, 199, 0.25);
-    margin-top: auto;
+    transition: background 0.2s ease;
 }
 
 .primary-btn:hover {
     background: var(--accent-hover);
-    transform: translateY(-2px);
-    box-shadow: 0 6px 16px rgba(2, 132, 199, 0.35);
 }
 
 .primary-btn:active {
-    transform: translateY(0);
+    opacity: 0.85;
 }
 
 /* Loading Overlay */
@@ -210,7 +251,8 @@ header p {
     visibility: hidden;
     opacity: 0;
     transition: opacity 0.3s ease;
-    background: rgba(255, 255, 255, 0.9);
+    background: rgba(14, 23, 42, 0.85);
+    color: var(--text-primary);
 }
 
 #loading-overlay.active {
@@ -232,22 +274,17 @@ header p {
     to { transform: rotate(360deg); }
 }
 
-/* Leaflet Popup Light Theme adjustments */
+/* Leaflet Popup */
 .leaflet-popup-content-wrapper {
-    background: var(--panel-bg);
+    background: #0f172a;
     color: var(--text-primary);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border: 1px solid var(--border-color);
-    border-radius: 8px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 6px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.4);
 }
 
 .leaflet-popup-tip {
-    background: var(--panel-bg);
-    border: 1px solid var(--border-color);
-    border-top: none;
-    border-left: none;
+    background: #0f172a;
 }
 
 .leaflet-container a.leaflet-popup-close-button {
@@ -261,9 +298,9 @@ header p {
 }
 
 .popup-scroll {
-    max-height: 250px;
+    max-height: 220px;
     overflow-y: auto;
-    padding-right: 8px;
+    padding-right: 6px;
 }
 
 .popup-scroll::-webkit-scrollbar {
@@ -276,40 +313,42 @@ header p {
 }
 
 .popup-table th, .popup-table td {
-    padding: 6px 0;
+    padding: 5px 0;
     text-align: left;
-    border-bottom: 1px solid var(--border-color);
+    border-bottom: 1px solid rgba(255,255,255,0.07);
 }
 
 .popup-table th {
     color: var(--text-secondary);
     font-weight: 500;
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     width: 40%;
 }
 
 .popup-table td {
-    font-weight: 600;
-    font-size: 0.9rem;
+    font-weight: 500;
+    font-size: 0.85rem;
+    color: var(--text-primary);
 }
 
-/* Floating Attribution Widget */
+/* Attribution widget */
 .attribution-widget {
     position: absolute;
-    bottom: 24px;
-    right: 24px;
+    bottom: 16px;
+    right: 16px;
     z-index: 900;
-    padding: 12px 16px;
-    border-radius: 8px;
-    font-size: 0.85rem;
-    line-height: 1.4;
-    color: var(--text-secondary);
+    background: rgba(15, 23, 42, 0.85);
+    color: #94a3b8;
+    padding: 8px 12px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    line-height: 1.5;
+    border: 1px solid rgba(255,255,255,0.07);
 }
 
 .attribution-widget a {
     color: var(--accent-color);
     text-decoration: none;
-    font-weight: 600;
 }
 
 .attribution-widget a:hover {

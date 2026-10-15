@@ -42,10 +42,10 @@
                 Visualiser by Google Gemini 3.1 Pro & Munir Paviwala</div>
         </div>
 
-        <aside id="sidebar" class="glass-panel">
+        <aside id="sidebar">
             <header>
-                <h1>OGIM India</h1>
-                <p>Infrastructure Explorer</p>
+                <h1>OGIM<span class="accent-dot">.</span></h1>
+                <p>India Infrastructure</p>
                 <div class="divider"></div>
             </header>
 
@@ -54,24 +54,26 @@
                 <div id="layer-toggles" class="toggle-group">
                     <!-- Layer checkboxes injected via JS -->
                 </div>
-                <!-- Controls spacing -->
-                <div style="margin-top: 20px;"></div>
+            </section>
+
+            <div class="sidebar-footer">
                 <button id="export-btn" class="primary-btn">
-                    <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none"
-                        stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1">
+                    <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"
+                        stroke-linecap="round" stroke-linejoin="round">
                         <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
                         <polyline points="7 10 12 15 17 10"></polyline>
                         <line x1="12" y1="15" x2="12" y2="3"></line>
                     </svg>
-                    Export High-Res Map
+                    Export Map
                 </button>
-            </section>
+            </div>
         </aside>
+        <button id="sidebar-toggle" title="Toggle sidebar">&#8249;</button>
 
         <!-- Loading Overlay -->
-        <div id="loading-overlay" class="glass-panel active">
+        <div id="loading-overlay" class="active">
             <div class="spinner"></div>
-            <p style="font-weight: 500; color: #0284c7;">Loading Geospatial Data...</p>
+            <p style="font-weight: 500; color: #f59e0b;">Loading Geospatial Data...</p>
         </div>
     </main>
 

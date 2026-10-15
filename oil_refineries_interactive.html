@@ -44,10 +44,26 @@
             width: 100%;
             height: 75vh;
             min-height: 600px;
-            background: #fff;
+            background: #e8e4dc;
             border: 1px solid var(--ink-color);
-            /* Forces the map to look like B&W paper */
-            filter: grayscale(100%) contrast(110%);
+        }
+
+        /* State boundary GeoJSON style */
+        .state-border {
+            stroke: #222;
+            stroke-width: 1px;
+            fill: none;
+            opacity: 0.5;
+        }
+
+        /* City reference dots */
+        .city-dot {
+            background: #000;
+            border-radius: 50%;
+            width: 5px;
+            height: 5px;
+            border: 1px solid #fff;
+            opacity: 0.7;
         }
 
         /* The dots on the map */
@@ -159,12 +175,56 @@
             dragging: true // Re-enabled for panning
         });
 
-        // 2. Add the Tile Layer (The Background Map)
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+        // 2. Tile Layers
+        // Base: Esri satellite (same as Baroda map), faded
+        L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+            attribution: 'Tiles &copy; Esri',
             maxZoom: 19,
-            opacity: 0.4
+            opacity: 0.45
         }).addTo(map);
+
+        // Label overlay: Esri Boundaries & Places (state/country names only, no roads)
+        L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}', {
+            attribution: '',
+            maxZoom: 19,
+            opacity: 0.55
+        }).addTo(map);
+
+        // India state boundaries GeoJSON (datameet/maps, CC0)
+        fetch('https://cdn.jsdelivr.net/npm/india-geojson@1.0.0/india-states.json')
+            .then(r => r.ok ? r.json() : null)
+            .then(data => {
+                if (!data) return;
+                L.geoJSON(data, {
+                    style: { color: '#333', weight: 1, fill: false, opacity: 0.45 }
+                }).addTo(map);
+            })
+            .catch(() => {}); // silent fail if CDN unreachable
+
+        // Major reference cities (lightweight inline — no extra request)
+        const refCities = [
+            { name: 'New Delhi', lat: 28.6139, lng: 77.2090 },
+            { name: 'Mumbai',    lat: 19.0760, lng: 72.8777 },
+            { name: 'Kolkata',   lat: 22.5726, lng: 88.3639 },
+            { name: 'Chennai',   lat: 13.0827, lng: 80.2707 },
+            { name: 'Hyderabad', lat: 17.3850, lng: 78.4867 },
+            { name: 'Bengaluru', lat: 12.9716, lng: 77.5946 },
+            { name: 'Ahmedabad', lat: 23.0225, lng: 72.5714 },
+            { name: 'Patna',     lat: 25.5941, lng: 85.1376 },
+            { name: 'Guwahati',  lat: 26.1445, lng: 91.7362 },
+            { name: 'Bhopal',    lat: 23.2599, lng: 77.4126 }
+        ];
+        refCities.forEach(c => {
+            L.marker([c.lat, c.lng], {
+                icon: L.divIcon({ className: 'city-dot', iconSize: [5,5], iconAnchor: [3,3] }),
+                interactive: false
+            }).bindTooltip(c.name, {
+                permanent: true,
+                direction: 'right',
+                className: 'refinery-label',
+                offset: [6, 0]
+            }).addTo(map);
+        });
 
         // 3. THE DATA
         const refineries = [

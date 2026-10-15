@@ -36,13 +36,30 @@ function initMap() {
         preferCanvas: true
     }).setView(CONFIG.mapCenter, CONFIG.zoom);
 
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors | &copy; OGIM Database',
+    // Base: Esri satellite, faded
+    L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+        attribution: 'Tiles &copy; Esri | &copy; OGIM Database',
         maxZoom: 19,
-        opacity: 0.35
+        opacity: 0.45
+    }).addTo(mapState.map);
+
+    // Label overlay: country/state names, no roads
+    L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}', {
+        attribution: '',
+        maxZoom: 19,
+        opacity: 0.5
     }).addTo(mapState.map);
 
     L.control.zoom({ position: 'bottomright' }).addTo(mapState.map);
+
+    // Sidebar collapse toggle
+    const toggleBtn = document.getElementById('sidebar-toggle');
+    const sidebar   = document.getElementById('sidebar');
+    toggleBtn.addEventListener('click', () => {
+        const collapsed = sidebar.classList.toggle('collapsed');
+        toggleBtn.innerHTML = collapsed ? '&#8250;' : '&#8249;';
+        setTimeout(() => mapState.map.invalidateSize(), 310);
+    });
 }
 
 // Map popup content generator (Smart NA filtering & Sorting)
@@ -170,9 +187,11 @@ async function loadLayers() {
                 if(e.target.checked) {
                     renderLayer.addTo(mapState.map);
                     customChk.style.backgroundColor = layer.color;
+                    customChk.style.borderColor = layer.color;
                 } else {
                     mapState.map.removeLayer(renderLayer);
                     customChk.style.backgroundColor = 'transparent';
+                    customChk.style.borderColor = '#475569';
                 }
             });
 
@@ -184,6 +203,7 @@ async function loadLayers() {
                 renderLayer.addTo(mapState.map);
                 const customChk = label.querySelector('.custom-checkbox');
                 customChk.style.backgroundColor = layer.color;
+                customChk.style.borderColor = layer.color;
             }
 
         } catch(e) {
