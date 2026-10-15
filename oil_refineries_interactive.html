@@ -127,12 +127,20 @@
 <body>
 
     <div class="diagram-container">
+        <div style="width: 100%; text-align: left; padding-bottom: 16px; border-bottom: 2px solid var(--ink-color); margin-bottom: 16px;">
+            <div style="font-size: 1.5rem; font-weight: bold; letter-spacing: 0.05em;">INDIA OIL REFINERIES — HISTORICAL TIMELINE</div>
+            <div style="font-size: 0.85rem; margin-top: 6px; color: #333;">Made to keep track of when which refinery was set up for the oil history of India.</div>
+        </div>
         <div id="map"></div>
 
         <div class="controls">
             <span class="year-display">YEAR: <span id="currentYear">1961</span></span>
             <input type="range" id="yearSlider" min="1900" max="2026" value="1961" step="1">
             <button id="exportBtn" style="margin-top: 15px; padding: 10px 20px; font-family: var(--font-main); font-weight: bold; cursor: pointer; border: 2px solid var(--ink-color); background: var(--paper-bg); color: var(--ink-color);">Export Map View</button>
+        </div>
+        <div style="width: 100%; text-align: left; padding-top: 16px; border-top: 1px solid var(--ink-color); margin-top: 4px; font-size: 0.75rem; color: #444;">
+            <strong>Sources:</strong> Ministry of Petroleum &amp; Natural Gas, India | PPAC | Company Annual Reports<br>
+            Directed by Munir Paviwala &nbsp;|&nbsp; Internal Research Tool
         </div>
     </div>
 
